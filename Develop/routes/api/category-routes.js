@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Category.findOne({
     where: {
-      id: req.param.id
+      id: req.params.id
     },
     attributes: [
       'id',
@@ -38,16 +38,24 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   Category.create({
-
+    // id: req.body.tag_id,
+    category_name: req.body.category_name
   })
 });
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  Category.update({
+    // id: req.body.tag_id,
+    category_name: req.body.category_name
+  })
 });
 
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+  Category.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
 });
 
 module.exports = router;
